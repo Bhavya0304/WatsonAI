@@ -1,10 +1,10 @@
-from .groq import GROQChat
+from .gemini import GeminiChat
 
 
-class Chat(GROQChat):
-    def __init__(self, API_KEY=None, model="llama-3.3-70b-versatile", temperature=0.7, max_tokens=2048):
+class Chat(GeminiChat):
+    def __init__(self, API_KEY=None, model=None, temperature=0.7, max_tokens=2048):
         super().__init__(API_KEY)
-        self.model = model
+        self.model = model or self.DEAFULT_MODEL
         self.temperature = temperature
         self.max_tokens = max_tokens
     

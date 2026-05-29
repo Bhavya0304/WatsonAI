@@ -3,6 +3,8 @@ import requests
 
 class GROQChat():
 
+    DEAFULT_MODEL="llama-3.3-70b-versatile"
+
     def __init__(self,API_KEY=None):
         self.API_KEY = API_KEY or os.environ.get("GROQ_API_KEY")
         if(self.API_KEY == None):
