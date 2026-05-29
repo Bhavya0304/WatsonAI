@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watson | Bhavya Joshi</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<div id="intro-screen">
+
+    <div class="intro-content">
+
+        <div id="intro-lines">
+
+            <div class="intro-line">
+                Hey, I'm Watson.
+            </div>
+
+            <div class="intro-line">
+                Bhavya Joshi's personal AI assistant.
+            </div>
+
+            <div class="intro-line">
+                Need to know about Bhavya?
+            </div>
+
+            <div class="intro-line">
+                I can help.
+            </div>
+
+            <div class="intro-line">
+                His projects are easier to understand than his folder structure.
+            </div>
+
+            <div class="intro-line">
+                Ask me anything.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="chat-container">
+
+    <div class="chat-header">
+        <h2>Watson</h2>
+        <p>Bhavya's AI Assistant</p>
+    </div>
+
+    <div id="messages"></div>
+
+    <div class="input-area">
+
+        <textarea
+            id="messageInput"
+            placeholder="Ask Watson anything..."
+        ></textarea>
+
+        <button id="sendBtn">
+            ➜
+        </button>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="./scripts/app.js"></script>
+
+</body>
+</html>
