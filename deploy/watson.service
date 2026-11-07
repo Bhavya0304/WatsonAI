@@ -1,0 +1,17 @@
+# /etc/systemd/system/watson.service
+# sudo systemctl daemon-reload && sudo systemctl enable --now watson
+[Unit]
+Description=Watson portfolio agent (FastAPI)
+After=network.target
+
+[Service]
+User=watson
+WorkingDirectory=/srv/watson
+ExecStart=/srv/watson/.venv/bin/uvicorn app.main:app --app-dir backend \
+    --host 127.0.0.1 --port 8000 --workers 1 \
+    --proxy-headers --forwarded-allow-ips 127.0.0.1
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

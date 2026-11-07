@@ -1,0 +1,106 @@
+[
+  {
+    "id": "friday-ivr",
+    "title": "Friday IVR",
+    "emoji": "📞",
+    "tagline": "An AI that answers real phone calls and talks back naturally.",
+    "description": "An AI-powered telephony platform that handles natural voice conversations over ordinary phone calls. The hardware side uses an ESP32, an ES8388 audio codec and a SIMCom A7670S GSM module; the software side chains speech-to-text, LLM orchestration and text-to-speech, with knowledge-base powered answers.",
+    "highlights": [
+      "GSM and telephony integration on custom hardware",
+      "Speech-to-text → LLM → text-to-speech pipeline",
+      "Knowledge-base powered responses",
+      "Voice-based automation workflows",
+      "Modular architecture for business use cases"
+    ],
+    "tech": ["Python", "FastAPI", "WebSockets", "Whisper", "LLMs", "Vector Search", "ESP32", "Docker"],
+    "skills": ["Voice AI", "Real-time systems", "Telephony architecture", "AI orchestration"],
+    "status": "Active",
+    "links": []
+  },
+  {
+    "id": "dialcast",
+    "title": "DialCast",
+    "emoji": "📡",
+    "tagline": "A GSM robo-caller that dials out and plays recorded messages.",
+    "description": "A GSM-based automated calling platform that places outbound calls and delivers pre-recorded audio messages, with campaign execution workflows on top of real modem hardware.",
+    "highlights": [
+      "GSM modem integration over serial",
+      "Automated outbound dialing",
+      "Audio playback and routing",
+      "Campaign execution workflows"
+    ],
+    "tech": ["Python", "GSM Modems", "Serial Communication", "Linux"],
+    "skills": ["Hardware integration", "Telecommunications", "Systems engineering"],
+    "status": "Built",
+    "links": []
+  },
+  {
+    "id": "emaily",
+    "title": "Emaily",
+    "emoji": "📬",
+    "tagline": "AI that sorts your inbox into categories you define.",
+    "description": "An intelligent email management platform that connects to Gmail and Outlook and uses AI to categorise and organise email automatically into user-defined categories.",
+    "highlights": [
+      "Gmail and Outlook integration",
+      "AI-driven categorisation",
+      "User-defined categories",
+      "Extensible automation architecture"
+    ],
+    "tech": ["Python", "React", "MongoDB", "LLMs", "Email APIs"],
+    "skills": ["AI integration", "Full-stack development", "Product architecture"],
+    "status": "Built",
+    "links": []
+  },
+  {
+    "id": "graph-middleware",
+    "title": "Microsoft Graph Middleware",
+    "emoji": "🔗",
+    "tagline": "Production middleware replacing legacy Exchange EWS with Microsoft Graph.",
+    "description": "A production integration platform that moves Dynamics 365 email workflows off legacy Exchange Web Services (EWS) onto Microsoft Graph, including large attachment handling, draft management and synchronisation.",
+    "highlights": [
+      "Microsoft Graph API integration",
+      "Large attachment upload sessions",
+      "Draft creation and management",
+      "Synchronisation workflows",
+      "Enterprise integration patterns"
+    ],
+    "tech": ["C#", ".NET", "Dynamics 365", "Microsoft Graph", "Exchange Online"],
+    "skills": ["Enterprise software", "API integrations", "Microsoft ecosystem"],
+    "status": "In production",
+    "links": []
+  },
+  {
+    "id": "darwin",
+    "title": "Darwin",
+    "emoji": "🧬",
+    "tagline": "Long-term research into distributed, collaborative AI.",
+    "description": "A long-term research project exploring distributed AI systems, decentralised compute and storage, and large-scale collaborative intelligence architectures. It is also where darwinlabs.org gets its name.",
+    "highlights": [
+      "Distributed computation",
+      "Decentralised storage",
+      "Neural network architectures",
+      "Large-scale AI systems"
+    ],
+    "tech": ["Distributed systems", "Neural networks", "Research"],
+    "skills": ["Research", "System design"],
+    "status": "Research",
+    "links": [{ "label": "darwinlabs.org", "url": "https://darwinlabs.org" }]
+  },
+  {
+    "id": "watson",
+    "title": "Watson",
+    "emoji": "🤖",
+    "tagline": "This very assistant you're talking to.",
+    "description": "Bhavya's portfolio agent: FastAPI backend, vector retrieval over his portfolio content, a budget-aware model router that falls back from OpenAI to Gemini to Groq, session transcripts by email, and a React frontend with in-chat cards.",
+    "highlights": [
+      "RAG over portfolio content with ChromaDB",
+      "Budget-aware multi-provider LLM routing",
+      "Structured replies with in-chat cards and suggestions",
+      "Admin dashboard with sessions and request logs"
+    ],
+    "tech": ["Python", "FastAPI", "ChromaDB", "OpenAI", "Gemini", "Groq", "React", "Tailwind"],
+    "skills": ["AI agents", "RAG", "Full-stack development"],
+    "status": "Live",
+    "links": [{ "label": "GitHub", "url": "https://github.com/bhavya0304" }]
+  }
+]

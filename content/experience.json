@@ -1,0 +1,35 @@
+[
+  {
+    "id": "veripark",
+    "title": "Production Engineer",
+    "company": "VeriPark",
+    "location": "Remote",
+    "start": "Aug 2025",
+    "end": "Present",
+    "company_blurb": "Global software provider helping banks, insurers and wealth managers become AI-first, with products like VeriTouch (financial CRM), VeriChannel, VeriLoan and VeriBranch. Built on Microsoft Azure; a perennial member of the Microsoft Business Applications Inner Circle.",
+    "summary": "Works on enterprise banking applications in fast-moving production environments: troubleshooting live issues, debugging complex systems and shipping reliable fixes while coordinating directly with clients and internal teams.",
+    "highlights": [
+      "Live-incident troubleshooting on business-critical financial systems",
+      "Backend development and system integrations",
+      "Direct client and cross-team coordination",
+      "Keeping production running smoothly under pressure"
+    ],
+    "tech": ["Enterprise apps", "Backend", "Integrations", "Production support"]
+  },
+  {
+    "id": "shaligram",
+    "title": "Jr. Software Developer",
+    "company": "Shaligram Infotech",
+    "location": "Ahmedabad, Gujarat, India",
+    "start": "Apr 2023",
+    "end": "Aug 2025",
+    "company_blurb": "ISO-certified custom software company with 200+ engineers and 1000+ delivered projects across Microsoft technologies, Dynamics CRM, Business Central and more, serving clients in 20+ countries.",
+    "summary": "Developed, customised and deployed Dynamics 365 applications and handled the technical side of Dynamics 365 CRM integrations.",
+    "highlights": [
+      "Developing and customising Dynamics 365 applications",
+      "Deploying Dynamics 365 solutions",
+      "Technical integrations for Dynamics 365 CRM"
+    ],
+    "tech": ["Dynamics 365", "CRM", "Integrations"]
+  }
+]

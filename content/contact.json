@@ -1,0 +1,12 @@
+{
+  "name": "Bhavya Joshi",
+  "headline": "Software Engineer · Dynamics 365, Azure, .NET · Enterprise AI",
+  "location": "India",
+  "current": "Production Engineer at VeriPark",
+  "email": "jshi.bhavya@gmail.com",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/bhavya0304" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/bhavyajsh" },
+    { "label": "Website", "url": "https://darwinlabs.org" }
+  ]
+}

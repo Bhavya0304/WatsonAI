@@ -1,14 +1,15 @@
 [project]
-name = "charlesd"
-version = "0.1.0"
-description = "Add your description here"
+name = "watson"
+version = "2.0.0"
+description = "Watson: Bhavya Joshi's AI portfolio agent"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "chromadb>=1.0.0",
     "fastapi>=0.136.3",
-    "langchain>=1.3.2",
-    "langchain-groq>=1.1.2",
+    "httpx>=0.28.1",
+    "itsdangerous>=2.2.0",
     "openai>=2.38.0",
-    "python-dotenv>=1.2.2",
+    "pydantic-settings>=2.6.0",
     "uvicorn>=0.48.0",
 ]

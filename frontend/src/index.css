@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 font-sans text-slate-200 antialiased;
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+  .glass-strong {
+    @apply border border-white/10 bg-ink-900/70 backdrop-blur-2xl;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-violet-400 via-fuchsia-300 to-cyan-300 bg-clip-text text-transparent;
+  }
+  .chip {
+    @apply rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-glow hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply btn border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10;
+  }
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100
+      placeholder:text-slate-500 outline-none focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/20;
+  }
+}
+
+/* Markdown inside chat bubbles */
+.md > * + * {
+  margin-top: 0.6em;
+}
+.md a {
+  @apply text-cyan-300 underline decoration-cyan-300/40 underline-offset-2 hover:decoration-cyan-300;
+}
+.md strong {
+  @apply font-semibold text-white;
+}
+.md ul {
+  @apply list-disc space-y-1 pl-5 marker:text-violet-400;
+}
+.md ol {
+  @apply list-decimal space-y-1 pl-5 marker:text-violet-400;
+}
+.md code {
+  @apply rounded-md bg-white/10 px-1.5 py-0.5 font-mono text-[0.85em] text-cyan-200;
+}
+.md pre {
+  @apply overflow-x-auto rounded-xl bg-black/40 p-3;
+}
+.md pre code {
+  @apply bg-transparent p-0;
+}
+.md h1,
+.md h2,
+.md h3 {
+  @apply font-semibold text-white;
+}
+
+/* Scrollbars */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
