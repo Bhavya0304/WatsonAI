@@ -14,11 +14,11 @@ export const place = (r: { city?: string | null; region?: string | null; country
 
 export function Panel({ title, action, children, className = "" }: { title?: string; action?: ReactNode; children: ReactNode; className?: string }) {
   return (
-    <section className={`glass rounded-2xl p-4 ${className}`}>
+    <section className={`glass min-w-0 rounded-2xl p-3 sm:p-4 ${className}`}>
       {(title || action) && (
-        <div className="mb-3 flex items-center justify-between gap-2">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           {title && <h2 className="text-sm font-semibold text-white">{title}</h2>}
-          {action}
+          {action && <div className="w-full sm:w-auto">{action}</div>}
         </div>
       )}
       {children}
@@ -26,11 +26,35 @@ export function Panel({ title, action, children, className = "" }: { title?: str
   );
 }
 
+/** Phone-friendly stand-in for a table row: a tappable card with a title line and key/value pairs. */
+export function MobileRow({ top, right, lines, onClick }: { top: ReactNode; right?: ReactNode; lines: ReactNode[]; onClick?: () => void }) {
+  const Tag = onClick ? "button" : "div";
+  return (
+    <Tag
+      type={onClick ? "button" : undefined}
+      onClick={onClick}
+      className="block w-full rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2.5 text-left transition active:bg-white/[0.07]"
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0 break-all text-sm text-white">{top}</div>
+        {right && <div className="shrink-0 text-xs">{right}</div>}
+      </div>
+      <div className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-slate-400">
+        {lines.map((l, i) => (
+          <span key={i} className="min-w-0 break-all">
+            {l}
+          </span>
+        ))}
+      </div>
+    </Tag>
+  );
+}
+
 export function Stat({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
   return (
-    <div className="glass rounded-2xl p-4">
-      <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500">{label}</div>
-      <div className="mt-1 text-2xl font-semibold text-white">{value}</div>
+    <div className="glass min-w-0 rounded-2xl p-3 sm:p-4">
+      <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate-500 sm:tracking-[0.16em]">{label}</div>
+      <div className="mt-1 truncate text-xl font-semibold text-white sm:text-2xl">{value}</div>
       {sub && <div className="mt-0.5 text-xs text-slate-500">{sub}</div>}
     </div>
   );

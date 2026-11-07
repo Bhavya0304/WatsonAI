@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../lib/api";
-import { Pager, Panel, Table, fmtTime, fmtUsd, providerBadge } from "./ui";
+import { MobileRow, Pager, Panel, Table, fmtTime, fmtUsd, providerBadge } from "./ui";
 
 type Row = {
   id: number;
@@ -35,7 +35,7 @@ export default function LlmCalls() {
       title="Model calls"
       action={
         <select
-          className="input w-40"
+          className="input sm:w-40"
           value={provider}
           onChange={(e) => {
             setOffset(0);
@@ -49,6 +49,32 @@ export default function LlmCalls() {
         </select>
       }
     >
+      <div className="space-y-2 sm:hidden">
+        {data.items.map((c) => (
+          <MobileRow
+            key={c.id}
+            top={
+              <span className="flex items-center gap-2">
+                {providerBadge(c.provider)} <span className="font-mono text-xs text-slate-400">{c.model}</span>
+              </span>
+            }
+            right={<span className={c.status === "ok" ? "text-emerald-300" : "text-rose-300"}>{c.status}</span>}
+            lines={[
+              fmtTime(c.created_at),
+              `${c.prompt_tokens} in / ${c.completion_tokens} out`,
+              fmtUsd(c.cost_usd),
+              c.latency_ms ? `${c.latency_ms}ms` : null,
+              c.error ? <span className="text-rose-300">{c.error.slice(0, 80)}</span> : null,
+              c.session_id ? (
+                <Link className="font-mono text-cyan-300" to={`/admin/sessions/${c.session_id}`}>
+                  session {c.session_id.slice(0, 8)}
+                </Link>
+              ) : null,
+            ].filter(Boolean)}
+          />
+        ))}
+      </div>
+      <div className="hidden sm:block">
       <Table head={["Time", "Provider", "Model", "In", "Out", "Cost", "Latency", "Status", "Session"]}>
         {data.items.map((c) => (
           <tr key={c.id} className="text-slate-300">
@@ -75,6 +101,7 @@ export default function LlmCalls() {
           </tr>
         ))}
       </Table>
+      </div>
       <Pager total={data.total} limit={LIMIT} offset={offset} onChange={setOffset} />
     </Panel>
   );

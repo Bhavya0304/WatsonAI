@@ -44,7 +44,26 @@ export default function ItemList<T>({
 
   return (
     <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
-      <div className="space-y-1.5">
+      {/* Phone/tablet: compact picker so the form is right below */}
+      <div className="flex gap-2 lg:hidden">
+        <select
+          className="input min-w-0 flex-1"
+          value={idx}
+          onChange={(e) => setSel(Number(e.target.value))}
+          aria-label={`Choose ${noun}`}
+        >
+          {items.map((it, i) => (
+            <option key={i} value={i}>
+              {(label(it) || `Untitled ${noun}`).slice(0, 60)}
+            </option>
+          ))}
+        </select>
+        <button type="button" onClick={add} className="btn-ghost shrink-0 px-3" aria-label={`Add ${noun}`}>
+          <Plus className="h-4 w-4" />
+        </button>
+      </div>
+
+      <div className="hidden space-y-1.5 lg:block">
         {items.map((it, i) => (
           <button
             key={i}
@@ -64,8 +83,11 @@ export default function ItemList<T>({
       </div>
 
       {current ? (
-        <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+        <div className="min-w-0 rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4">
           <div className="mb-4 flex items-center justify-end gap-1">
+            <span className="mr-auto text-xs text-slate-500 lg:hidden">
+              {idx + 1} of {items.length}
+            </span>
             <button type="button" className="btn-ghost p-1.5" onClick={() => move(-1)} disabled={idx === 0} aria-label="Move up">
               <ArrowUp className="h-4 w-4" />
             </button>

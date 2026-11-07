@@ -1,7 +1,7 @@
 import { RotateCcw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../../lib/api";
-import { Meter, Panel, Stat, Table, fmtTime, fmtUsd, providerBadge } from "./ui";
+import { Meter, MobileRow, Panel, Stat, Table, fmtTime, fmtUsd, providerBadge } from "./ui";
 
 type Window = { sessions: number; visits: number; unique_ips: number; messages: number };
 type Stats = {
@@ -46,7 +46,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
         <Stat label="Conversations · 7d" value={stats["7d"].sessions} sub={`${stats["30d"].sessions} in 30d`} />
         <Stat label="Visitor messages · 7d" value={stats["7d"].messages} sub={`${stats["30d"].messages} in 30d`} />
         <Stat label="Unique IPs · 30d" value={stats["30d"].unique_ips} sub={`${stats["30d"].visits} page visits`} />
@@ -86,14 +86,22 @@ export default function Dashboard() {
           {stats.daily.length === 0 ? (
             <p className="text-sm text-slate-500">No visits yet. Share that link! 🚀</p>
           ) : (
-            <div className="flex h-44 items-end gap-1">
+            <div className="flex h-44 gap-1">
               {stats.daily.map((d) => (
-                <div key={d.day} className="group relative flex flex-1 flex-col justify-end" title={`${d.day}: ${d.visits} visits, ${d.sessions} chats, ${d.messages} messages`}>
-                  <div
-                    className="rounded-t bg-gradient-to-t from-violet-600/70 to-cyan-400/70 transition group-hover:from-violet-500 group-hover:to-cyan-300"
-                    style={{ height: `${(d.visits / maxDaily) * 100}%`, minHeight: 4 }}
-                  />
-                  <span className="mt-1 hidden text-center font-mono text-[9px] text-slate-600 sm:block">{d.day.slice(8)}</span>
+                <div
+                  key={d.day}
+                  className="group flex min-w-0 max-w-[48px] flex-1 flex-col"
+                  title={`${d.day}: ${d.visits} visits, ${d.sessions} chats, ${d.messages} messages`}
+                >
+                  <span className="text-center font-mono text-[10px] text-slate-400 opacity-0 transition group-hover:opacity-100">{d.visits}</span>
+                  {/* the bar track fills the remaining height, so percentage heights resolve */}
+                  <div className="flex flex-1 items-end">
+                    <div
+                      className="w-full rounded-t bg-gradient-to-t from-violet-600/70 to-cyan-400/70 transition group-hover:from-violet-500 group-hover:to-cyan-300"
+                      style={{ height: `${Math.max(3, (d.visits / maxDaily) * 100)}%` }}
+                    />
+                  </div>
+                  <span className="mt-1 text-center font-mono text-[9px] text-slate-600">{d.day.slice(8)}</span>
                 </div>
               ))}
             </div>
@@ -103,6 +111,22 @@ export default function Dashboard() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <Panel title="Model usage · 30d" className="lg:col-span-2">
+          <div className="space-y-2 sm:hidden">
+            {stats.providers.map((p) => (
+              <MobileRow
+                key={p.provider}
+                top={providerBadge(p.provider)}
+                right={<span className="font-mono text-slate-200">{fmtUsd(p.cost_usd)}</span>}
+                lines={[
+                  `${p.calls} calls`,
+                  <span className="text-emerald-300">{p.ok} ok</span>,
+                  <span className={p.errors ? "text-rose-300" : ""}>{p.errors} errors</span>,
+                  `${(p.prompt_tokens ?? 0).toLocaleString()} in / ${(p.completion_tokens ?? 0).toLocaleString()} out`,
+                ]}
+              />
+            ))}
+          </div>
+          <div className="hidden sm:block">
           <Table head={["Provider", "Calls", "OK", "Errors", "Tokens in", "Tokens out", "Cost"]}>
             {stats.providers.map((p) => (
               <tr key={p.provider} className="text-slate-300">
@@ -116,6 +140,7 @@ export default function Dashboard() {
               </tr>
             ))}
           </Table>
+          </div>
         </Panel>
         <Panel title="Top countries · 30d">
           <ul className="space-y-2 text-sm">

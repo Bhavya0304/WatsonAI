@@ -103,7 +103,7 @@ export default function ContentPage() {
           <p className="text-sm text-slate-400">Everything Watson knows about you. Saving a section re-creates its embeddings right away.</p>
         </div>
         {index && (
-          <div className="glass flex items-center gap-3 rounded-xl px-3 py-2 text-xs">
+          <div className="glass flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl px-3 py-2 text-xs sm:w-auto">
             <Database className="h-4 w-4 text-cyan-300" />
             <span className="text-slate-300">
               {index.chunks} chunks · indexed {fmtTime(index.indexed_at)}
@@ -116,7 +116,7 @@ export default function ContentPage() {
         )}
       </div>
 
-      <div className="no-scrollbar flex gap-1 overflow-x-auto border-b border-white/10">
+      <div className="grid grid-cols-3 gap-1 sm:flex sm:overflow-x-auto sm:border-b sm:border-white/10">
         {TABS.map((t) => (
           <button
             key={t.key}
@@ -125,8 +125,10 @@ export default function ContentPage() {
               setTab(t.key);
               setMsg(null);
             }}
-            className={`flex shrink-0 items-center gap-1.5 border-b-2 px-3 py-2 text-sm transition ${
-              tab === t.key ? "border-violet-400 text-white" : "border-transparent text-slate-400 hover:text-white"
+            className={`flex shrink-0 items-center justify-center gap-1.5 rounded-xl border px-2 py-2 text-sm transition sm:justify-start sm:rounded-none sm:border-0 sm:border-b-2 sm:px-3 ${
+              tab === t.key
+                ? "border-violet-400/50 bg-violet-500/15 text-white sm:border-violet-400 sm:bg-transparent"
+                : "border-white/10 text-slate-400 hover:text-white sm:border-transparent"
             }`}
           >
             <t.icon className="h-4 w-4" /> {t.label}
@@ -135,7 +137,7 @@ export default function ContentPage() {
         ))}
       </div>
 
-      <div key={`${tab}-${rev}`} className="glass rounded-2xl p-4">
+      <div key={`${tab}-${rev}`} className="glass min-w-0 rounded-2xl p-3 sm:p-4">
         {tab === "profile" && <ProfileEditor value={draft.profile} onChange={set("profile")} />}
         {tab === "projects" && <ProjectsEditor value={draft.projects} onChange={set("projects")} />}
         {tab === "experience" && <ExperienceEditor value={draft.experience} onChange={set("experience")} />}
@@ -147,17 +149,17 @@ export default function ContentPage() {
       {msg && <Notice kind={msg.kind}>{msg.text}</Notice>}
 
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-white/10 bg-ink-950/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
-          <span className="text-xs text-slate-400">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-2.5 sm:px-4 sm:py-3">
+          <span className="min-w-0 text-xs text-slate-400">
             {dirty.has(tab) ? <span className="text-amber-300">Unsaved changes in {TABS.find((t) => t.key === tab)?.label}</span> : "All changes saved"}
-            {dirty.size > (dirty.has(tab) ? 1 : 0) && <span className="ml-2 text-slate-500">(other tabs have unsaved edits too)</span>}
+            {dirty.size > (dirty.has(tab) ? 1 : 0) && <span className="ml-2 hidden text-slate-500 sm:inline">(other tabs have unsaved edits too)</span>}
           </span>
-          <div className="flex gap-2">
-            <button type="button" className="btn-ghost" onClick={discard} disabled={busy || !dirty.has(tab)}>
-              <Undo2 className="h-4 w-4" /> Discard
+          <div className="flex shrink-0 gap-2">
+            <button type="button" className="btn-ghost" onClick={discard} disabled={busy || !dirty.has(tab)} aria-label="Discard changes">
+              <Undo2 className="h-4 w-4" /> <span className="hidden sm:inline">Discard</span>
             </button>
-            <button type="button" className="btn-primary" onClick={save} disabled={busy || !dirty.has(tab)}>
-              <Save className="h-4 w-4" /> {busy ? "Saving & embedding…" : "Save & re-embed"}
+            <button type="button" className="btn-primary whitespace-nowrap" onClick={save} disabled={busy || !dirty.has(tab)}>
+              <Save className="h-4 w-4" /> {busy ? "Saving…" : <>Save<span className="hidden sm:inline">&nbsp;&amp; re-embed</span></>}
             </button>
           </div>
         </div>
